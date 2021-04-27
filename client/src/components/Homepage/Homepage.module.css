@@ -1,2 +1,47 @@
 .Homepage {
+  margin-top: 2rem;
+}
+
+.Header {
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.Header > h1 {
+  font-size: 1.5rem;
+}
+
+.Body {
+  width: 100%;
+}
+
+.CountriesWrapper {
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+@media (min-width: 500px) {
+  .Header {
+    padding: 0.5rem 5%;
+    text-align: left;
+  }
+}
+
+@media (min-width: 650px) {
+  .Header > h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .Header {
+    padding: 0.5rem 10%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .Header {
+    padding: 0.5rem 20%;
+  }
 }

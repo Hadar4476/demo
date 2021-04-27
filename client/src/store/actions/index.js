@@ -1,6 +1,16 @@
 export {
-  toggleExample,
-  getExample,
-  getExampleSuccess,
-  getExampleFail,
-} from './example';
+  getCountries,
+  getCountriesSuccess,
+  getCountriesFailed,
+  getCountryDetails,
+  getCountryDetailsSuccess,
+  getCountryDetailsFailed,
+  searchForCountry,
+  updateCountries,
+} from './countries';
+
+export {
+  getPlayersPerCountry,
+  getPlayersPerCountrySuccess,
+  getPlayersPerCountryFail,
+} from './players';

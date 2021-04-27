@@ -17,14 +17,21 @@ import 'boxicons';
 
 import App from './App';
 
-import exampleReducer from './store/reducers/example';
+import countriesReducer from './store/reducers/countries';
+import playersReducer from './store/reducers/players';
 
-import { watchGetExampleSaga } from './store/sagas';
+import {
+  watchGetCountries,
+  watchGetCountryDetails,
+  watchGetPlayersPerCountry,
+  watchSearchForCountrySaga,
+} from './store/sagas';
 
 import reportWebVitals from './reportWebVitals';
 
 const rootReducer = combineReducers({
-  example: exampleReducer,
+  countries: countriesReducer,
+  players: playersReducer,
 });
 
 const sagaMiddleWare = createSagaMiddleware();
@@ -36,7 +43,10 @@ const store = createStore(
   composeEnhancers(applyMiddleware(thunk, sagaMiddleWare))
 );
 
-sagaMiddleWare.run(watchGetExampleSaga);
+sagaMiddleWare.run(watchGetCountries);
+sagaMiddleWare.run(watchGetCountryDetails);
+sagaMiddleWare.run(watchSearchForCountrySaga);
+sagaMiddleWare.run(watchGetPlayersPerCountry);
 
 ReactDOM.render(
   <Provider store={store}>

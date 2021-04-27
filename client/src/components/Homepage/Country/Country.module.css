@@ -1,0 +1,30 @@
+.Country {
+  margin: 0.5rem auto;
+  border-radius: 100%;
+  cursor: pointer;
+  background-color: white;
+  height: 250px;
+  width: 250px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  transition-duration: 200ms;
+}
+
+.Country:hover {
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+.Name {
+  font-weight: bold;
+  padding: 0.5rem 0;
+}
+
+.Image {
+}
+
+.Image > img {
+  object-fit: contain;
+}

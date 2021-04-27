@@ -1,60 +1,97 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
 import * as actions from '../../store/actions';
 
+import $ from 'jquery';
+
 import classes from './Homepage.module.css';
 
+import Country from './Country/Country';
+import SearchBar from '../SearchBar/SearchBar';
+
 const Homepage = (props) => {
-  const {
-    example,
-    fetchedExample,
-    error,
-    onToggleExample,
-    onGetExample,
-  } = props;
+  const { countries, onGetCountries, onSearchForCountry } = props;
+
+  const [countriesState, setCountriesState] = useState([]);
+
+  const [searchInputState, setSearchInputState] = useState('');
+
+  const bodyClasses = [classes.Body, 'container'];
+  const countriesWrapper = [
+    classes.CountriesWrapper,
+    'row row-cols-xs-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4',
+  ];
 
   useEffect(() => {
-    console.log(example);
-  }, [example]);
+    $(window).scrollTop(0);
+    onGetCountries();
+  }, [onGetCountries]);
 
   useEffect(() => {
-    console.log(fetchedExample);
-  }, [fetchedExample]);
+    if (countries.length) {
+      setCountriesState(countries);
+    }
+  }, [countries]);
 
-  useEffect(() => {
-    console.log(error);
-  }, [error]);
-
-  const onToggleExampleHanlder = () => {
-    onToggleExample();
+  const inputChangedHandler = ({ target }) => {
+    const { value } = target;
+    if (!value) {
+      return onGetCountries();
+    }
+    setSearchInputState(value);
   };
 
-  const onGetExampleHandler = () => {
-    onGetExample();
+  const onSearchSubmit = () => {
+    const trimSearchInput = searchInputState.trim();
+    if (!trimSearchInput) return;
+    const isSearchInputInsideCountries = countriesState.some((item) =>
+      item.Country_Name.toLowerCase().includes(trimSearchInput.toLowerCase())
+    );
+    if (!isSearchInputInsideCountries) return;
+    onSearchForCountry(searchInputState);
   };
+
+  let countriesElementsArray = [];
+  if (countriesState.length) {
+    countriesElementsArray = countriesState.map((item) => (
+      <Country
+        key={item._id}
+        continentCode={item.Continent_Code}
+        continentName={item.Continent_Name}
+        countryName={item.Country_Name}
+        threeLetterCountryCode={item.Three_Letter_Country_Code}
+        twoLetterCountryCode={item.Two_Letter_Country_Code}
+      />
+    ));
+  }
 
   return (
     <div className={classes.Homepage}>
-      <h1>Homepage here</h1>
-      <button onClick={onToggleExampleHanlder}>Toggle Example</button>
-      <button onClick={onGetExampleHandler}>Fetch Example</button>
+      <div className={classes.Header}>
+        <h1>Choose country to see it's best players</h1>
+      </div>
+      <SearchBar changed={inputChangedHandler} submit={onSearchSubmit} />
+      <div className={bodyClasses.join(' ')}>
+        <div className={countriesWrapper.join(' ')}>
+          {countriesElementsArray}
+        </div>
+      </div>
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
-    example: state.example.example,
-    error: state.example.error,
-    fetchedExample: state.example.fetchedExample,
+    countries: state.countries.countries,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onToggleExample: () => dispatch(actions.toggleExample()),
-    onGetExample: () => dispatch(actions.getExample()),
+    onGetCountries: () => dispatch(actions.getCountries()),
+    onSearchForCountry: (searchInput) =>
+      dispatch(actions.searchForCountry(searchInput)),
   };
 };
 

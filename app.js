@@ -6,9 +6,8 @@ const http = require('http').Server(app);
 const mongoose = require('mongoose');
 const path = require('path');
 
-const auth = require('./routes/auth');
-const users = require('./routes/users');
-const example = require('./routes/example');
+const countries = require('./routes/countries');
+const players = require('./routes/players');
 
 dotenv.config();
 
@@ -26,9 +25,9 @@ mongoose
 
 app.use(express.json());
 app.use(cors());
-app.use('/users', users);
-app.use('/auth', auth);
-app.use('/example', example);
+
+app.use('/countries', countries);
+app.use('/players', players);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));

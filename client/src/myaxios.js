@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const url = 'https://hadar-demo-project.herokuapp.com';
+export const flagImageUrl = 'https://flagcdn.com/120x90/';
+
+const url = 'http://localhost:3001';
 
 const instance = axios.create({
   baseURL: url,

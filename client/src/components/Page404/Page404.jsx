@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+
+import $ from 'jquery';
 
 import classes from './Page404.module.css';
 
@@ -7,6 +9,10 @@ const Page404 = () => {
   const robotIconClasses = [classes.RobotIcon, 'fas fa-robot'];
 
   const history = useHistory();
+
+  useEffect(() => {
+    $(window).scrollTop(0);
+  }, []);
 
   const navigateToHome = () => {
     history.push('/');

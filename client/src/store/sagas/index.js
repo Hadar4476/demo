@@ -2,8 +2,28 @@ import { takeEvery, takeLatest } from 'redux-saga/effects';
 
 import * as actionTypes from '../actions/actionTypes';
 
-import { getExampleSaga } from './example';
+import {
+  getCountriesSaga,
+  getCountryDetailsSaga,
+  searchForCountrySaga,
+} from './countries';
+import { getPlayersPerCountrySaga } from './players';
 
-export function* watchGetExampleSaga() {
-  yield takeLatest(actionTypes.GET_EXAMPLE, getExampleSaga);
+export function* watchGetCountries() {
+  yield takeEvery(actionTypes.GET_COUNTRIES, getCountriesSaga);
+}
+
+export function* watchGetCountryDetails() {
+  yield takeEvery(actionTypes.GET_COUNTRY_DETAILS, getCountryDetailsSaga);
+}
+
+export function* watchSearchForCountrySaga() {
+  yield takeLatest(actionTypes.SEARCH_FOR_COUNTRY, searchForCountrySaga);
+}
+
+export function* watchGetPlayersPerCountry() {
+  yield takeLatest(
+    actionTypes.GET_PLAYERS_PER_COUNTRY,
+    getPlayersPerCountrySaga
+  );
 }
