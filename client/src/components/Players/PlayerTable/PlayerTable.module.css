@@ -1,6 +1,46 @@
 .PlayerTable {
+  width: 90%;
+  margin: 2rem auto;
+}
+
+.Header > h1 {
+  font-size: 2rem;
+  font-family: 'Antonio', sans-serif;
+}
+
+.Header > p {
+  font-weight: 500;
+}
+
+.Body {
+  border-radius: 0.25rem;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 
 .PlayerInfo {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  background-color: #e0e0e0;
+  padding: 0.5rem;
+  border-bottom: 1px solid silver;
+  font-weight: bold;
+}
+
+.PlayerInfo > div {
+  width: 25%;
+}
+
+@media (min-width: 768px) {
+  .PlayerTable {
+    width: 80%;
+  }
+}
+
+@media (min-width: 1400px) {
+  .PlayerTable {
+    width: 59%;
+  }
 }

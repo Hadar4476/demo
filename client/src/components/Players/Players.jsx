@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import { flagImageUrl } from '../../myaxios';
 
 import * as actions from '../../store/actions';
@@ -17,6 +17,7 @@ const Players = (props) => {
     countries,
     countryDetails,
     players,
+    loading,
     onGetCountries,
     onGetCountryDetails,
     onGetPlayersPerCountry,
@@ -25,6 +26,8 @@ const Players = (props) => {
   const [countryState, setCountryState] = useState({});
 
   const { pathname } = useLocation();
+
+  const history = useHistory();
 
   useEffect(() => {
     $(window).scrollTop(0);
@@ -51,11 +54,14 @@ const Players = (props) => {
 
   useEffect(() => {
     if (countryState && countryState.Country_Name) {
-      const { Country_Name } = countryState;
-      const trimCountryName = Country_Name.split(/[,\s]/g)[0];
-      onGetCountryDetails(trimCountryName);
+      const { Two_Letter_Country_Code } = countryState;
+      onGetCountryDetails(Two_Letter_Country_Code);
     }
   }, [countryState, onGetCountryDetails]);
+
+  const navigateToHome = () => {
+    history.push('/');
+  };
 
   let countryElement = null;
   if (countryState && countryState.Country_Name) {
@@ -74,7 +80,7 @@ const Players = (props) => {
         </div>
         <div className={classes.Info}>
           <div className={classes.CountryName}>
-            <p>{Country_Name}</p>
+            <p title={Country_Name}>{Country_Name}</p>
           </div>
           <div className={classes.ContinentName}>
             <span>{Continent_Name}</span>
@@ -83,8 +89,9 @@ const Players = (props) => {
       </div>
     );
   }
+
   let countryDetailsElemetns = null;
-  if (countryDetails && countryDetails.length) {
+  if (Object.keys(countryDetails).length) {
     const { capital, population, currencies, languages } = countryDetails;
 
     let currenciesElements = [];
@@ -96,17 +103,26 @@ const Players = (props) => {
 
     countryDetailsElemetns = (
       <div className={classes.CountryDetails}>
+        <h1>Info about the country</h1>
         <div className={classes.Capital}>
-          <span>Capital: {capital}</span>
+          <span className={classes.Detail}>
+            Capital: <span>{capital}</span>
+          </span>
         </div>
         <div className={classes.Population}>
-          <span>Population: {population}</span>
+          <span className={classes.Detail}>
+            Population: <span>{population}</span>
+          </span>
         </div>
         <div className={classes.Currencies}>
-          <span>Currenices:{currenciesElements.join(' ')}</span>
+          <span className={classes.Detail}>
+            Currenices: <span>{currenciesElements.join(', ')}</span>
+          </span>
         </div>
         <div className={classes.Languages}>
-          <span>Languages: {languagesElements.join(' ')}</span>
+          <span className={classes.Detail}>
+            Languages: <span>{languagesElements.join(', ')}</span>
+          </span>
         </div>
       </div>
     );
@@ -130,11 +146,26 @@ const Players = (props) => {
     ));
   }
 
+  let noPlayers = null;
+  if (players && !players.length && !loading) {
+    noPlayers = (
+      <div className={classes.NoPlayers}>
+        <h1>Seems like this country dosen't have any players to display</h1>
+        <div className={classes.GoBackIcon} onClick={navigateToHome}>
+          <i className='fas fa-undo-alt'></i>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div classes={classes.Players}>
+    <div className={classes.Players}>
       <Spinner />
-      {countryDetailsElemetns}
-      {countryElement}
+      <div className={classes.Header}>
+        {countryElement}
+        {countryDetailsElemetns}
+      </div>
+      {noPlayers}
       <div className={classes.Body}>{gamesTablesElementsArray}</div>
     </div>
   );
@@ -145,6 +176,7 @@ const mapStateToProps = (state) => {
     countries: state.countries.countries,
     countryDetails: state.countries.countryDetails,
     players: state.players.players,
+    loading: state.players.loading,
   };
 };
 

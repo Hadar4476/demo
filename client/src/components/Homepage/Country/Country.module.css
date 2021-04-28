@@ -1,30 +1,55 @@
 .Country {
-  margin: 0.5rem auto;
-  border-radius: 100%;
-  cursor: pointer;
-  background-color: white;
-  height: 250px;
-  width: 250px;
-  text-align: center;
+  width: 95%;
+  margin: 1rem auto;
   display: flex;
-  align-items: center;
   flex-direction: column;
-  justify-content: center;
   transition-duration: 200ms;
+  border-radius: 0.5rem;
 }
 
 .Country:hover {
-  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+  color: #ffbf00;
 }
 
 .Name {
-  font-weight: bold;
   padding: 0.5rem 0;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Name > h4 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 80%;
+  margin: auto 0;
 }
 
 .Image {
+  width: 150px;
+  margin: 0.5rem auto;
+  text-align: center;
 }
 
 .Image > img {
+  cursor: pointer;
+  width: 100%;
   object-fit: contain;
+}
+
+.ContinentName {
+  text-align: center;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+}
+
+@media (min-width: 768px) {
+  .Country {
+    width: 350px;
+  }
 }

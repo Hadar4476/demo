@@ -16,13 +16,13 @@ export function* getCountriesSaga(action) {
   }
 }
 
-export function* getCountryDetailsSaga({ countryName }) {
+export function* getCountryDetailsSaga({ countryCode }) {
   try {
     const { data } = yield axios.get(
-      `https://restcountries.eu/rest/v2/name/${countryName}`
+      `https://restcountries.eu/rest/v2/alpha/${countryCode}`
     );
-    if (data.length) {
-      const { capital, population, currencies, languages } = data[0];
+    if (Object.keys(data).length) {
+      const { capital, population, currencies, languages } = data;
       const mappedCountryDetailsObject = {
         capital: capital,
         population: population,

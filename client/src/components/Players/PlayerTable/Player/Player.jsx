@@ -17,7 +17,7 @@ const Player = (props) => {
         <span>{nickname}</span>
       </div>
       <div className={classes.Profit}>
-        <span>{profit}</span>
+        <span>{parseInt(profit)}</span>
       </div>
     </div>
   );

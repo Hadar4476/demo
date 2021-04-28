@@ -1,0 +1,72 @@
+.Paganation {
+  margin-top: 2rem;
+  display: flex;
+}
+
+.Paganation *::selection {
+  background-color: transparent;
+}
+
+.Previous > button,
+.Next > button {
+  background-color: transparent;
+  height: 100%;
+  width: 100%;
+  border-radius: 100%;
+  border: none;
+  outline: none;
+}
+
+.PagesList {
+  display: flex;
+  list-style-type: none;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.Previous,
+.Next,
+.PageNumber {
+  margin: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
+  border-radius: 100%;
+  background-color: transparent;
+  border: 2px solid black;
+  color: black;
+  font-size: 1rem;
+  font-weight: bold;
+  transition-duration: 200ms;
+  cursor: pointer;
+}
+
+.Active {
+  cursor: default;
+}
+
+.Active,
+.PagesList > .PageNumber:hover {
+  background-color: black;
+  color: white;
+  border: 2px solid black;
+}
+
+.Previous:hover,
+.Next:hover {
+  background-color: black;
+}
+
+.Previous:hover > button,
+.Next:hover > button {
+  color: white;
+}
+
+.Previous:hover > button:disabled,
+.Next:hover > button:disabled {
+  color: gray;
+}

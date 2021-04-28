@@ -16,6 +16,10 @@ const getCountriesFail = (state, action) => {
   return updateObject(state, { error: action.error });
 };
 
+const getCountryDetails = (state, action) => {
+  return updateObject(state, { countryDetails: [] });
+};
+
 const getCountryDetailsSuccess = (state, action) => {
   return updateObject(state, { countryDetails: action.countryDetails });
 };
@@ -38,6 +42,8 @@ const reducer = (state = initalState, action) => {
       return getCountriesSuccess(state, action);
     case actionTypes.GET_COUNTRIES_FAIL:
       return getCountriesFail(state, action);
+    case actionTypes.GET_COUNTRY_DETAILS:
+      return getCountryDetails(state, action);
     case actionTypes.GET_COUNTRY_DETAILS_SUCCESS:
       return getCountryDetailsSuccess(state, action);
     case actionTypes.GET_COUNTRY_DETAILS_FAIL:

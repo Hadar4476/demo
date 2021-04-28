@@ -20,10 +20,10 @@ export const getCountriesFailed = (error) => {
   };
 };
 
-export const getCountryDetails = (countryName) => {
+export const getCountryDetails = (countryCode) => {
   return {
     type: actionTypes.GET_COUNTRY_DETAILS,
-    countryName: countryName,
+    countryCode: countryCode,
   };
 };
 

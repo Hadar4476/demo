@@ -5,23 +5,24 @@
 .Header {
   text-align: center;
   padding: 0.5rem;
+  font-family: 'Antonio', sans-serif;
+  border-bottom: 1px solid rgb(44, 44, 44);
 }
 
 .Header > h1 {
   font-size: 1.5rem;
+  font-weight: bold;
 }
 
 .Body {
-  width: 100%;
+  min-height: 700px;
 }
 
 .CountriesWrapper {
-  width: 100%;
-  text-align: center;
-  margin: 0 auto;
+  position: relative;
 }
 
-@media (min-width: 500px) {
+@media (min-width: 530px) {
   .Header {
     padding: 0.5rem 5%;
     text-align: left;
@@ -43,5 +44,8 @@
 @media (min-width: 1024px) {
   .Header {
     padding: 0.5rem 20%;
+  }
+  .Header > h1 {
+    font-size: 2.5rem;
   }
 }

@@ -1,2 +1,120 @@
 .Players {
+  margin-top: 2rem;
+}
+
+.Header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.Country {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+}
+
+.Image {
+  width: 200px;
+  margin: 0 auto;
+}
+
+.Image > img {
+  object-fit: contain;
+  width: 100%;
+}
+
+.Info {
+  margin-top: 1rem;
+  text-align: left;
+  width: 100%;
+}
+
+.CountryName {
+  width: 200px;
+}
+
+.CountryName > p {
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.ContinentName {
+  margin-top: 0.5rem;
+}
+
+.CountryDetails {
+  margin-top: 1rem;
+  text-align: left;
+}
+
+.CountryDetails > h1 {
+  font-size: 1.8rem;
+  text-align: center;
+  border-bottom: 1px solid silver;
+  padding-bottom: 0.5rem;
+  font-family: 'Antonio', sans-serif;
+}
+
+.Detail {
+  font-weight: 500;
+}
+
+.Detail > span {
+  font-weight: 400;
+}
+
+.NoPlayers {
+  margin-top: 2rem;
+  text-align: center;
+  font-family: 'Antonio', sans-serif;
+}
+
+.NoPlayers > h1 {
+  font-size: 1.8rem;
+}
+
+.GoBackIcon {
+  margin-top: 1rem;
+  font-size: 3rem;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition-duration: 200ms;
+  cursor: pointer;
+}
+
+.GoBackIcon:hover {
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+.Body {
+  margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+  .Header {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+@media (min-width: 1400px) {
+  .Players {
+    margin-top: 4rem;
+  }
+  .Header {
+    width: 60%;
+  }
 }

@@ -27,7 +27,7 @@ const PlayerTable = (props) => {
   if (uniqueGenresState && uniqueGenresState.length) {
     headerssElementsArray = uniqueGenresState.map((item) => (
       <div key={game} className={classes.Header}>
-        <h1>{game}</h1>
+        <h1>{game}:</h1>
         <p>{item}</p>
       </div>
     ));
@@ -40,7 +40,7 @@ const PlayerTable = (props) => {
         key={item._id}
         firstName={item.NameFirst}
         lastName={item.NameLast}
-        nickname={item.Current_Handle}
+        nickname={item.CurrentHandle}
         profit={item.TotalUSDPrize}
       />
     ));
