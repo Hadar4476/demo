@@ -109,6 +109,9 @@
     width: 90%;
     margin: 0 auto;
   }
+  .CountryName > p {
+    overflow: visible;
+  }
 }
 @media (min-width: 1400px) {
   .Players {
